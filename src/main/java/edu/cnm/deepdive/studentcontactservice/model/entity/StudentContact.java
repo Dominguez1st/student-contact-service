@@ -2,6 +2,8 @@ package edu.cnm.deepdive.studentcontactservice.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,8 +45,9 @@ public class StudentContact {
   private Boolean primary;
 
   @NonNull
+  @Enumerated(value = EnumType.ORDINAL)
   @Column(name = "relationship_type", nullable = false)
-  private Relationship relationship;
+  private Relationship relationship = Relationship.PARENT;
 
   @NonNull
   public Long getId() {

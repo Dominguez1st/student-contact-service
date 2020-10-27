@@ -25,7 +25,7 @@ import org.springframework.lang.NonNull;
     indexes = {
         @Index(columnList = "enrolled"),
         @Index(columnList = "disenrolled"),
-        @Index(columnList = "firstName,middleName,lastName ")
+        @Index(columnList = "firstName,middleName,lastName")
     }
 )
 public class Student {
@@ -53,12 +53,12 @@ public class Student {
 
   @NonNull
   @CreationTimestamp
-  @Temporal(TemporalType.TIMESTAMP)
+  @Temporal(TemporalType.DATE)
   @Column(nullable = false, updatable = false)
   private LocalDate enrolled;
 
   @Column
-  @Temporal(TemporalType.TIMESTAMP)
+  @Temporal(TemporalType.DATE)
   private LocalDate disenrolled;
 
   @NonNull
