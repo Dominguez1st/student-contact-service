@@ -6,12 +6,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import org.springframework.lang.NonNull;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
+@Table(
+    indexes = {
+     @Index(columnList = "relationship"),
+     @Index(columnList = "student,contact ")
+    }
+)
 public class StudentContact {
 
   @Id
@@ -37,6 +45,44 @@ public class StudentContact {
   @NonNull
   @Column(name = "relationship_type", nullable = false)
   private Relationship relationship;
+
+  @NonNull
+  public Long getId() {
+    return id;
+  }
+
+  @NonNull
+  public Student getStudent() {
+    return student;
+  }
+
+  @NonNull
+  public Contact getContact() {
+    return contact;
+  }
+
+  public void setContact(@NonNull Contact contact) {
+    this.contact = contact;
+  }
+
+  @NonNull
+  public Boolean getPrimary() {
+    return primary;
+  }
+
+  public void setPrimary(@NonNull Boolean primary) {
+    this.primary = primary;
+  }
+
+  @NonNull
+  public Relationship getRelationship() {
+    return relationship;
+  }
+
+  public void setRelationship(
+      @NonNull Relationship relationship) {
+    this.relationship = relationship;
+  }
 
   public enum Relationship {
     PARENT, GUARDIAN, SIBLING, OTHER;

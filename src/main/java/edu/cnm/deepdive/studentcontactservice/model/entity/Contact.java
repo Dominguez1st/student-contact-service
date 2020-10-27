@@ -9,12 +9,19 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
 import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
+import javax.persistence.Table;
 import org.springframework.lang.NonNull;
 
 @SuppressWarnings("JpaDataSourceORMInspection")
 @Entity
+@Table(
+    indexes = {
+        @Index(columnList = "firstName,middleName,lastName ")
+    }
+)
 public class Contact {
 
   @Id
@@ -47,4 +54,64 @@ public class Contact {
   @OrderBy("student.lastName DESC ")
   private final List<StudentContact> students = new LinkedList<>();
 
+  @NonNull
+  public Long getId() {
+    return id;
+  }
+
+  @NonNull
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(@NonNull String lastName) {
+    this.lastName = lastName;
+  }
+
+  @NonNull
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(@NonNull String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getMiddleName() {
+    return middleName;
+  }
+
+  public void setMiddleName(String middleName) {
+    this.middleName = middleName;
+  }
+
+  @NonNull
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+  public void setPhoneNumber(@NonNull String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+  public String getSmsNumber() {
+    return smsNumber;
+  }
+
+  public void setSmsNumber(String smsNumber) {
+    this.smsNumber = smsNumber;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  @NonNull
+  public List<StudentContact> getStudents() {
+    return students;
+  }
 }
